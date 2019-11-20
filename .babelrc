@@ -1,0 +1,14 @@
+{
+    "plugins": ["@babel/plugin-transform-runtime"],
+    "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "debug": true,
+            "useBuiltIns": "usage",
+            "targets": "ie 11",
+            "corejs": 3.4
+          }
+        ]
+      ]
+}

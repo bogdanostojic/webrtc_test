@@ -4,27 +4,41 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const webpack = require('webpack');
+
 module.exports = {
     mode: 'development',
     devtool: 'source-map',
     // entry: ['babel-polyfill','./src/index.js'],
-    entry: './src/index.js',
+    entry: {
+      'admin': './src/page/admin.js',
+      'visitor': './src/page/visitor.js'
+    },
     watch: true,
     target: 'web',
     plugins: [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
-        filename: '[name]-[contenthash].css'
+        filename: '[name]--[contenthash].css'
       }),
       new HtmlWebpackPlugin({
-        title: 'index.html',
-        template: './src/index.html'
+        title: 'admin.html',
+        filename: 'admin.html',
+        template: './src/template/admin.html',
+        chunks: ['admin', 'vendors']
+      }),
+      new HtmlWebpackPlugin({
+        title: 'visitor.html',
+        filename: 'visitor.html',
+        template: './src/template/visitor.html',
+        chunks: ['visitor', 'vendors']
       }),
       new WebpackBuildNotifierPlugin({
         title: "Yeya",
         successIcon: path.resolve("./img/db.png"),
         logo: path.resolve("./img/lol.png"),
       }),
+      // new webpack.DefinePlugin(require('./features.js')),
       // new BundleAnalyzerPlugin()
     ],
     module: {
@@ -56,7 +70,8 @@ module.exports = {
             chunks: 'all'
           }
         }
-      }
+      },
+      minimize: true
     },
     output: {
       filename: '[name]-[contenthash].js',

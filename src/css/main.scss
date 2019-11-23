@@ -1,0 +1,135 @@
+// @import './call.scss';
+
+// body {
+// height: 100vh;
+// display: flex;
+// justify-content: center;
+// align-items: center;
+// transition: background-image 5s ease-in;
+// background-image: linear-gradient(to right, #92fe9d, #00c0ff);  
+// }
+
+
+// .me {
+//     background: blue;
+//     &.you{
+//         background: red;
+//     }
+// }
+
+// .color--black {
+//     transition: background-image 5s ease-in;
+//     background-image: linear-gradient(to left, #fff, #aaa);
+// }
+
+// .btn, .link {
+//     padding: 45px 70px;
+//     position: relative;
+//     border: none;
+//     border-radius: 5px;
+//     &:focus {
+//         // border: none;
+//         box-shadow: 0 0 0 20px rgba(0,0,0,0.4),
+//         0 0 0 10px blue;
+//         outline: 0;
+//     }
+// }
+
+// .flash {
+//     position: absolute;
+//     height: 200px;
+//     width: 300px;
+//     background-image: linear-gradient(to left, #fff, #aaa);
+//     top: 0;
+//     right: 0;
+//     opacity: 0;
+//     visibility: hidden;
+// }
+
+// .btn::after{ 
+//     position: absolute;
+//     top: -150px;
+//     left: 0;
+//     white-space: nowrap;
+//     height: inherit;
+//     width: inherit;
+//     padding: inherit;
+//     background: red;
+//     content: attr(title);
+    
+// }
+
+// .weather-card {
+//     background: #f1f1f1;
+//     padding: 35px;
+//     display: inline-block;
+//     text-align: center;
+//     box-shadow: 1px 10px 15px -10px rgba(0,0,0,0.4);
+//     border: 1px solid #eaeaea;
+//     color: #333;
+//     position: relative;
+// }
+
+// .weather-card:empty {
+//     height: 200px;
+//     width: 150px;
+//     background-image: radial-gradient(circle 20px, #ccc 100%, transparent),
+//     linear-gradient(#ccc, #ccc),
+//     linear-gradient(#ccc, #ccc),
+//     linear-gradient(#f1f1f1, #f1f1f1);
+//     background-size: 48px 48px, 190px 40px, 190px 20px, 100% 100%;
+//     background-position: 50% 24px, 15px 140px, 15px 200px, 0 0;
+//     background-repeat: no-repeat;
+//     animation: loading_2 1.5s infinite;
+// }
+
+// .weather-card:empty:after {
+//     content: "";
+//     height: 6px;
+//     width: 100%;
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     background: linear-gradient(to left, #92fe9d 0, #00c0ff);
+//     background-size: 200% 200%;
+//     animation: loadinga 1s infinite;
+// }
+
+// @keyframes loadinga {
+//     0% {
+//         background-position: 0% 50%;
+//     }
+//     100% {
+//         background-position: -200% 0%;
+//     }
+// }
+
+// // ::-moz-focus-inner {
+// //     border: 0;
+// // }
+
+// .slider {
+//     input[type=range] {
+//         -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+//         width: 100%; /* Specific width is required for Firefox. */
+//         background: transparent; /* Otherwise white in Chrome */
+//       }
+      
+//       input[type=range]::-webkit-slider-thumb {
+//         -webkit-appearance: none;
+//       }
+      
+//       input[type=range]:focus {
+//         outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+//       }
+      
+//       input[type=range]::-ms-track {
+//         width: 100%;
+//         cursor: pointer;
+      
+//         /* Hides the slider so custom styles can be added */
+//         background: transparent; 
+//         border-color: transparent;
+//         color: transparent;
+//       }
+// }

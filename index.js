@@ -10,12 +10,18 @@ global.admins = [];
 global.visitors = [];
 global.onlineUsers = [];
 // app.use(helmet())
+console.log(__dirname)
 app.use(express.static('public'))
 // app.use(helmet())
 
-app.get('/', (req, res) => {
+app.get('/visitor', (req, res) => {
     console.log(req.fresh)
-    res.sendFile(path.resolve(__dirname+ '/public/index.html'))
+    res.sendFile(path.resolve(__dirname+ '/public/visitor.html'))
+});
+
+app.get('/admin', (req, res) => {
+    console.log(req.fresh)
+    res.sendFile(path.resolve(__dirname+ '/public/admin.html'))
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`))

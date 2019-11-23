@@ -1,9 +1,8 @@
-import { $audioCall, $videoCall, $video, $audio } from './selectors.js';
-import { sendVideo } from './socket.js'
-import { Stream } from './stream.js'
-import './main.scss'
+import '../css/visitor.scss';
+import { sendVideo } from '../lib/socket/visitor.js';
+import { Stream, $audioCall, $videoCall, $video, $audio } from '../lib';
 let disable = false;
-window.stream = Stream;
+
 function disableCallButtons() {
 
     if(disable) return;
@@ -22,7 +21,10 @@ function enableCallButtons() {
 
 
  async function getAudio() {
+
     try {
+        // const {Stream} = await import(/*webpackChunkName: "stream" */"./stream.js"); // Dynamic import example
+        console.log(Stream)
         Stream.setLocal(await navigator.mediaDevices.getUserMedia({audio: true}));
         $audio.srcObject = Stream.getLocal();
         // Stream.getLocal().getTracks().forEach( track => track.enabled = false);

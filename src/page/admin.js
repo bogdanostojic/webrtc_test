@@ -1,11 +1,13 @@
 import '../css/admin.scss';
-import { sendVideo } from '../lib/socket/admin.js';
+import { sendVideo, checkOnline } from '../lib/socket/admin.js';
 
-import { Stream,  $audioCall, $videoCall, $video, $audio } from '../lib';
+import { Stream,  $audioCall, $videoCall, $video, $audio,$replaceVideoTrack } from '../lib';
 
+import { Peer } from '../lib/peer.js';
 
 
 let disable = false;
+Peer.create();
 
 function disableCallButtons() {
 
@@ -23,7 +25,13 @@ function enableCallButtons() {
 
 }
 
+$replaceVideoTrack.on('click', async () => {
+        Stream.setLocal(await navigator.mediaDevices.getUserMedia({video: true}));
+        $video.srcObject = Stream.getLocal();
 
+        Peer.replaceTrack(Stream.getLocal())
+        checkOnline();
+})
  async function getAudio() {
 
     try {
@@ -43,14 +51,25 @@ function enableCallButtons() {
     }
 }
 
+let black = ({width = 20, height = 20} = {}) => {
+    let canvas = Object.assign(document.createElement('canvas'), {width, height});
+    canvas.getContext('2d').fillRect(0,0, width, height);
+    let stream = canvas.captureStream('1');
+    return Object.assign(stream.getVideoTracks()[0], {enabled: false});
+}
+let blackSilence = () => new MediaStream([black()])
 async function getVideo() {
     try {
-        Stream.setLocal(await navigator.mediaDevices.getUserMedia({video: true}));
-        $video.srcObject = Stream.getLocal();
+        let stream = blackSilence();
+        $video.srcObject = stream; 
 
+        // Stream.setLocal(await navigator.mediaDevices.getUserMedia({video: true}));
+        // $video.srcObject = Stream.getLocal();
+        Peer.addStream(stream);
         $video.onloadedmetadata = function(e) {
             $video.play();
             sendVideo()
+
           }
 
     }
@@ -82,3 +101,7 @@ var wait = function(){ return new Promise (function (resolve, reject) {
     wait().then();
 }
 runName()
+
+export  {
+    Peer
+}

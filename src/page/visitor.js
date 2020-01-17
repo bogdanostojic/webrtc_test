@@ -1,6 +1,6 @@
 import '../css/visitor.scss';
-import { sendVideo } from '../lib/socket/visitor.js';
-import { Stream, $audioCall, $videoCall, $video, $audio } from '../lib';
+import { sendVideo, socket, io } from '../lib/socket/visitor.js';
+import { Stream, $audioCall, $videoCall, $video, $audio, $joinCall } from '../lib';
 let disable = false;
 
 function disableCallButtons() {
@@ -31,6 +31,8 @@ function enableCallButtons() {
         $audio.onloadedmetadata = function(e) {
             $audio.play();
             console.log(window)
+            let call =  io.connect('http://localhost:3300/call');
+            call.on('connect', () => call.emit('eey'))
             // enableCallButtons()
           }
     }
@@ -67,6 +69,11 @@ $videoCall.on('click', e => {
     disableCallButtons()
     getVideo()
 })
+
+$joinCall.on('click', e => {
+
+    socket.emit('join-call', {id: Math.random()})
+})
 var wait = function(){ return new Promise (function (resolve, reject) {
     setTimeout(function(){
         console.log('wait')
@@ -78,3 +85,7 @@ var wait = function(){ return new Promise (function (resolve, reject) {
     wait().then();
 }
 runName()
+
+export {
+    Stream
+}

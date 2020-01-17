@@ -1,4 +1,20 @@
+%button {
+    width: auto;
+    padding: 20px;
+    position: relative;
+    background-color: green;
+    margin: 20px;
+    transition: background 0.16s ease-in;
+    z-index: 2000;
+    &:active {
+        background: rgba(0,0,0,0.5);
+        transition: background 0s ease-out;
+    }
 
+    &:disabled {
+        background: #c1c1c1;
+    }
+}
 .call {
     display: flex;
     background: wheat;
@@ -10,25 +26,17 @@
     left: 0;
 
     &-v, &-a {
-        width: auto;
-        padding: 20px;
-        position: relative;
-        background-color: green;
-        margin: 20px;
-        transition: background 0.16s ease-in;
-        z-index: 2000;
-        &:active {
-            background: yellow;
-            transition: background 0s ease-out;
-        }
-
-        &:disabled {
-            background: #c1c1c1;
-        }
+        @extend %button;
     }
 }
 
 .video {
     height: 100px;
     background: red;
+}
+
+
+.replace-video-track {
+    @extend %button;
+
 }

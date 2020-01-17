@@ -14,7 +14,7 @@ module.exports = {
       'admin': './src/page/admin.js',
       'visitor': './src/page/visitor.js'
     },
-    watch: true,
+    // watch: true,
     target: 'web',
     plugins: [
       new CleanWebpackPlugin(),
@@ -32,6 +32,13 @@ module.exports = {
         filename: 'visitor.html',
         template: './src/template/visitor.html',
         chunks: ['visitor', 'vendors']
+      }),
+      new HtmlWebpackPlugin({
+        title: 'index.html',
+        filename: 'index.html',
+        template: './src/template/index.html',
+        excludeChunks: ['vendors', 'visitor', 'admin']
+        // chunks: ['visitor', 'vendors']
       }),
       new WebpackBuildNotifierPlugin({
         title: "Yeya",
@@ -71,10 +78,11 @@ module.exports = {
           }
         }
       },
-      minimize: true
+      // minimize: true
     },
     output: {
+      path: path.resolve(__dirname, 'public'),
       filename: '[name]-[contenthash].js',
-      path: path.resolve(__dirname, 'public')
+      library: 'App',
     }
 }

@@ -1,5 +1,5 @@
 import io from 'socket.io-client/dist/socket.io.slim';
-const socket = io('http://localhost:3300', {
+const socket = io('http://localhost:3300/visitor', {
     reconnection: true,
     reconnectionDelay: 15000,
     query: {
@@ -18,6 +18,16 @@ socket.on('video-call', data => {
     console.log(data)
 })
 
+socket.on('send-ice', data => {
+    console.log('ice-candidate')
+    console.log(data)
+})
+
+socket.on('send-offer', data => {
+    console.log('offer')
+    console.log(data);
+})
+
 function sendVideo() {
     console.log(socket)
     socket.emit('video-call',{message: 'hey'})
@@ -33,5 +43,7 @@ function parseJson(data, space = 2) {
 } 
 
 export {
-    sendVideo
+    sendVideo,
+    socket,
+    io
 }

@@ -10,6 +10,11 @@ let $joinCall = $(".join-call");
 let $replaceVideoTrack = $(".replace-video-track");
 
 
+console.log($audio)
+$audio.onplaying = function (e) {
+    console.log(`${JSON.stringify(e,null,2)} it is playing`);
+}
+
 export  {
     $popup,
     $audioCall,

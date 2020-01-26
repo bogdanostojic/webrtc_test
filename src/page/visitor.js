@@ -1,6 +1,7 @@
 import '../css/visitor.scss';
 import { sendVideo, socket, io } from '../lib/socket/visitor.js';
 import { Stream, $audioCall, $videoCall, $video, $audio, $joinCall } from '../lib';
+import {Error} from '../lib/error';
 let disable = false;
 
 function disableCallButtons() {
@@ -37,6 +38,7 @@ function enableCallButtons() {
           }
     }
     catch (e) {
+        Error.show(e, 'device');
         console.log(e)
     }
 }

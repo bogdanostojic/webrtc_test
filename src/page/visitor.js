@@ -26,7 +26,7 @@ function enableCallButtons() {
     try {
         // const {Stream} = await import(/*webpackChunkName: "stream" */"./stream.js"); // Dynamic import example
         console.log(Stream)
-        Stream.setLocal(await navigator.mediaDevices.getUserMedia({audio: true}));
+        // Stream.setLocal(await navigator.mediaDevices.getUserMedia({audio: true}));
         $audio.srcObject = Stream.getLocal();
         // Stream.getLocal().getTracks().forEach( track => track.enabled = false);
         $audio.onloadedmetadata = function(e) {

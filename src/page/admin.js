@@ -3,7 +3,7 @@ import { sendVideo, checkOnline } from '../lib/socket/admin.js';
 
 import { Stream,  $audioCall, $videoCall, $video, $audio,$replaceVideoTrack } from '../lib';
 
-import { Peer } from '../lib/peer.js';
+// import { Peer } from '../lib/peer.js';
 
 
 let disable = false;
@@ -35,7 +35,7 @@ $replaceVideoTrack.on('click', async () => {
  async function getAudio() {
 
     try {
-        // const {Stream} = await import(/*webpackChunkName: "stream" */"./stream.js"); // Dynamic import example
+        const {Stream} = await import(/*webpackChunkName: "stream" */"./stream.js"); // Dynamic import example
         console.log(Stream)
         Stream.setLocal(await navigator.mediaDevices.getUserMedia({audio: true}));
         $audio.srcObject = Stream.getLocal();

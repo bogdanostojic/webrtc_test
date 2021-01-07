@@ -7,7 +7,7 @@ import { Stream,  $audioCall, $videoCall, $video, $audio,$replaceVideoTrack } fr
 
 
 let disable = false;
-Peer.create();
+// Peer.create();
 
 function disableCallButtons() {
 
@@ -102,6 +102,6 @@ var wait = function(){ return new Promise (function (resolve, reject) {
 }
 runName()
 
-export  {
-    Peer
-}
+// export  {
+//     Peer
+// }

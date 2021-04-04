@@ -1,1 +1,2 @@
 echo $(pwd);
+echo $(ls)

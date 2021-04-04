@@ -1,2 +1,2 @@
 echo $(pwd);
-echo 'test'
+echo $(ls)
